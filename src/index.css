@@ -58,11 +58,12 @@
     @apply bg-background text-foreground min-h-screen;
     background: linear-gradient(
       135deg,
-      rgba(44, 62, 80, 0.95) 0%,
-      rgba(52, 73, 94, 0.95) 100%
+      rgba(13, 17, 23, 0.95) 0%,
+      rgba(20, 24, 31, 0.95) 100%
     );
     background-attachment: fixed;
     position: relative;
+    overflow-x: hidden;
   }
 
   body::before {
@@ -72,20 +73,50 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
-    animation: subtleFloat 15s ease-in-out infinite;
+    z-index: -1;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 1%, transparent 1%) 0 0 / 50px 50px,
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1%, transparent 1%) 0 0 / 50px 50px;
+    animation: bubbleFloat 20s linear infinite;
   }
 
-  @keyframes subtleFloat {
+  @keyframes bubbleFloat {
     0% {
-      transform: translateY(0) translateX(0);
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-10px, 10px);
     }
     50% {
-      transform: translateY(-10px) translateX(10px);
+      transform: translate(10px, -10px);
+    }
+    75% {
+      transform: translate(-10px, -10px);
     }
     100% {
-      transform: translateY(0) translateX(0);
+      transform: translate(0, 0);
+    }
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    animation: bubbleRise 15s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes bubbleRise {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100vh) scale(2);
+      opacity: 0;
     }
   }
 
