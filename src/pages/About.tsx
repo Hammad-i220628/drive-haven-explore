@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
-import { Award, Users, ThumbsUp, Building } from "lucide-react";
+import { Award, Users, ThumbsUp, Building, Car } from "lucide-react";
 
 const About = () => {
   const stats = [
