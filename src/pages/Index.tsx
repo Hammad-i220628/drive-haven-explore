@@ -4,10 +4,12 @@ import FeaturedVehicles from "../components/FeaturedVehicles";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Navbar />
       <Hero />
-      <FeaturedVehicles />
+      <div className="page-container">
+        <FeaturedVehicles />
+      </div>
     </main>
   );
 };

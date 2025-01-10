@@ -51,63 +51,65 @@ const Inventory = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100">
+    <div className="min-h-screen">
       <Navbar />
-      <div className="pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
-          <h1 className="text-3xl font-bold text-gray-900">Our Inventory</h1>
-          <div className="flex space-x-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search vehicles..."
-                className="pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">
-              <Filter className="w-4 h-4" />
-              <span>Filters</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {vehicles.map((vehicle, index) => (
-            <motion.div
-              key={vehicle.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-            >
-              <div className="relative h-48">
-                <img
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  className="w-full h-full object-cover"
+      <div className="page-container">
+        <div className="section-container">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+            <h1 className="text-3xl font-bold gradient-text">Our Inventory</h1>
+            <div className="flex space-x-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search vehicles..."
+                  className="pl-10 pr-4 py-2 border rounded-lg glass"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold">
-                  ${vehicle.price}
-                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{vehicle.name}</h3>
-                <div className="grid grid-cols-3 gap-4 mb-4">
-                  {Object.entries(vehicle.specs).map(([key, value]) => (
-                    <div key={key} className="text-center">
-                      <p className="text-xs text-gray-500 uppercase">{key}</p>
-                      <p className="font-medium">{value}</p>
-                    </div>
-                  ))}
+              <button className="flex items-center space-x-2 px-4 py-2 glass rounded-lg hover:bg-white/20 transition-colors">
+                <Filter className="w-4 h-4" />
+                <span>Filters</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {vehicles.map((vehicle, index) => (
+              <motion.div
+                key={vehicle.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="glass rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="relative h-48">
+                  <img
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 right-4 glass rounded-full px-3 py-1 text-sm font-semibold">
+                    ${vehicle.price}
+                  </div>
                 </div>
-                <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
-                  View Details
-                </button>
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 gradient-text">{vehicle.name}</h3>
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    {Object.entries(vehicle.specs).map(([key, value]) => (
+                      <div key={key} className="text-center">
+                        <p className="text-xs text-gray-300 uppercase">{key}</p>
+                        <p className="font-medium text-white">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <button className="w-full bg-car-accent text-car-primary py-2 rounded-md hover:bg-opacity-90 transition-colors">
+                    View Details
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
